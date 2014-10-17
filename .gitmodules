@@ -4,3 +4,6 @@
 [submodule "git-modes"]
 	path = git-modes
 	url = https://github.com/magit/git-modes.git
+[submodule "tramp"]
+	path = tramp
+	url = http://git.savannah.gnu.org/r/tramp.git
