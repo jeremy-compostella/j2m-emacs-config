@@ -76,9 +76,9 @@
 (global-set-key (kbd "C-c m s") 'magit-status)
 (global-set-key (kbd "C-c m l") 'magit-log)
 (global-set-key (kbd "C-c m b") 'magit-blame-mode)
-(global-set-key (kbd "C-c m r") 'magit-reflog)))
+(global-set-key (kbd "C-c m r") 'magit-reflog)
 
-(require j2m-tools)
+(require 'j2m-tools)
 (global-set-key (kbd "C-c d") 'duplicate-lines)
 (global-set-key (kbd "C->") 'increment-number-at-point)
 (global-set-key (kbd "C-<") 'decrement-number-at-point)
