@@ -7,3 +7,6 @@
 [submodule "tramp"]
 	path = tramp
 	url = http://git.savannah.gnu.org/r/tramp.git
+[submodule "gnus"]
+	path = gnus
+	url = http://git.gnus.org/gnus.git
