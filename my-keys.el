@@ -68,15 +68,15 @@
 (eval-after-load 'org
   '(add-hook 'org-mode-hook 'my-org-mode-hook))
 
+(require 'magit)
 (defun my-magit-mode-hook ()
   (define-key magit-mode-map (kbd "M-n") 'diff-hunk-next)
   (define-key magit-mode-map (kbd "M-p") 'diff-hunk-prev))
-(eval-after-load 'magit
-  '(progn (add-hook 'magit-mode-hook 'my-magit-mode-hook)
-	  (global-set-key (kbd "C-c m s") 'magit-status)
-	  (global-set-key (kbd "C-c m l") 'magit-log)
-	  (global-set-key (kbd "C-c m b") 'magit-blame-mode)
-	  (global-set-key (kbd "C-c m r") 'magit-reflog)))
+(add-hook 'magit-mode-hook 'my-magit-mode-hook)
+(global-set-key (kbd "C-c m s") 'magit-status)
+(global-set-key (kbd "C-c m l") 'magit-log)
+(global-set-key (kbd "C-c m b") 'magit-blame-mode)
+(global-set-key (kbd "C-c m r") 'magit-reflog)))
 
 (require j2m-tools)
 (global-set-key (kbd "C-c d") 'duplicate-lines)
