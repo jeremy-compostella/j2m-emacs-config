@@ -13,3 +13,6 @@
 [submodule "j2m-tools"]
 	path = j2m-tools
 	url = https://github.com/jeremy-compostella/j2m-tools.git
+[submodule "org-mode"]
+	path = org-mode
+	url = http://repo.or.cz/org-mode.git
