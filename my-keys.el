@@ -66,6 +66,11 @@
 (eval-after-load 'make-mode
   '(add-hook 'makefile-mode-hook 'my-makefile-mode-hook))
 
+(defun my-sh-mode-hook ()
+  (my-code-mode-hook sh-mode-map))
+(eval-after-load 'sh-script
+  '(add-hook 'sh-mode-hook 'my-sh-mode-hook))
+
 (defun release-my-move-keys (map)
   "I use C-M-[jklm] keys to navigate respectively to the down,
 up, left and right window.  Some mode like org-mode for instance
