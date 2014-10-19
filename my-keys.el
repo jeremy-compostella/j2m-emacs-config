@@ -83,7 +83,6 @@ mode definitions."
 (global-set-key (kbd "C-c o a") 'org-agenda-list)
 (global-set-key (kbd "C-c o t") 'org-todo-list)
 
-(require 'magit)
 (defun my-magit-mode-hook ()
   (define-key magit-mode-map (kbd "M-n") 'diff-hunk-next)
   (define-key magit-mode-map (kbd "M-p") 'diff-hunk-prev))
