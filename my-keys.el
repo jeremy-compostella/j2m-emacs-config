@@ -32,12 +32,15 @@
 (global-set-key (kbd "C-c q") 'quit-window)
 
 ;; Basic mode hook
+;; Basic mode hooks
 (defun my-code-mode-hook (map)
   (define-key map (kbd "M-n") 'forward-paragraph)
   (define-key map (kbd "M-p") 'backward-paragraph)
   (hs-minor-mode)
   (hs-hide-initial-comment-block)
-  (setq show-trailing-whitespace t))
+  (setq show-trailing-whitespace t)
+  (flyspell-prog-mode)
+  (dtrt-indent-mode t))
 
 (defun my-c-mode-hook ()
   (my-code-mode-hook c-mode-map))
