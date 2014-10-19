@@ -188,6 +188,9 @@ mentioned in an erc channel" t)
 
 (add-hook 'gnus-before-startup-hook 'offlineimap)
 
+;; git-commit-mode
+(add-hook 'git-commit-mode-hook 'my-message-mode-hook)
+
 ;; My key shortcuts
 (require 'my-keys)
 
