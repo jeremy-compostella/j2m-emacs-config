@@ -19,3 +19,6 @@
 [submodule "rscope"]
 	path = rscope
 	url = https://github.com/rjarzmik/rscope.git
+[submodule "google-maps"]
+	path = google-maps
+	url = https://github.com/jd/google-maps.el.git
