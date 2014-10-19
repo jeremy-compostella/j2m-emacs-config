@@ -74,8 +74,14 @@ mode definitions."
 
 (defun my-org-mode-hook ()
   (release-my-move-keys org-mode-map))
-(eval-after-load 'org
-  '(add-hook 'org-mode-hook 'my-org-mode-hook))
+(add-hook 'org-mode-hook 'my-org-mode-hook)
+(defun my-org-agenda-mode-hook ()
+  (define-key org-agenda-mode-map (kbd "q") 'quit-window))
+(add-hook 'org-agenda-mode-hook 'my-org-agenda-mode-hook)
+(global-set-key (kbd "C-c o f") 'org-switchb)
+(global-set-key (kbd "C-c o c") 'org-capture)
+(global-set-key (kbd "C-c o a") 'org-agenda-list)
+(global-set-key (kbd "C-c o t") 'org-todo-list)
 
 (require 'magit)
 (defun my-magit-mode-hook ()
