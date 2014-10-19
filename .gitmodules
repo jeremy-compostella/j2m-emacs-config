@@ -25,3 +25,6 @@
 [submodule "offlineimap"]
 	path = offlineimap
 	url = https://github.com/jd/offlineimap.el.git
+[submodule "status"]
+	path = status
+	url = https://github.com/jeremy-compostella/status.git
