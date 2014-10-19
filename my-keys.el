@@ -83,8 +83,12 @@
 (global-set-key (kbd "C-c m b") 'magit-blame-mode)
 (global-set-key (kbd "C-c m r") 'magit-reflog)
 
-(require 'j2m-tools)
-(global-set-key (kbd "C-c d") 'duplicate-lines)
+(global-set-key (kbd "C-x d") 'duplicate-lines)
+(global-set-key (kbd "C-c k") 'kill-line-at-point)
+(global-set-key (kbd "C-x c l") 'copy-line-at-point)
+(global-set-key (kbd "C-x c s") 'copy-symbol-at-point)
+(global-set-key (kbd "C-x c w") 'copy-word-at-point)
+
 (global-set-key (kbd "C->") 'increment-number-at-point)
 (global-set-key (kbd "C-<") 'decrement-number-at-point)
 (global-set-key (kbd "M-P") (lambda () (interactive) (move-lines -1)))
