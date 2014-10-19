@@ -1,4 +1,4 @@
-;;; my-keys.el --- My base configuration for GNU/Emacs
+;;; my-keys.el --- My keys configuration for GNU/Emacs
 
 ;; Copyright (C) 2014 Jérémy Compostella
 
