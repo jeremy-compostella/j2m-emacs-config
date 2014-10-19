@@ -35,6 +35,8 @@
 (defun my-code-mode-hook (map)
   (define-key map (kbd "M-n") 'forward-paragraph)
   (define-key map (kbd "M-p") 'backward-paragraph)
+  (hs-minor-mode)
+  (hs-hide-initial-comment-block)
   (setq show-trailing-whitespace t))
 
 (defun my-c-mode-hook ()
