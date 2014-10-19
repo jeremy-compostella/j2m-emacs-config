@@ -1,0 +1,24 @@
+# some more ls aliases
+alias ll='ls -l'
+alias la='ls -A'
+alias ls='ls --color=auto'
+alias l='ls -CF'
+
+# Aptitude useful aliases
+alias install="sudo aptitude install"
+alias remove="sudo aptitude remove"
+alias purge="sudo aptitude purge"
+alias search="aptitude search"
+alias update="sudo aptitude update"
+alias safe-upgrade="sudo aptitude safe-upgrade"
+alias dist-upgrade="sudo aptitude dist-upgrade"
+
+export PATH=$PATH:~/bin:/sbin:/usr/sbin
+
+# Better prompt
+PROMPT_COLOR='1;32m'
+PROMPT_COLOR2='1;32m'
+PROMPT_COLOR3='1;34m'
+PS1='\[\e[1;33m\][\A] ${debian_chroot+($debian_chroot)}\e[01;32m\e[${PROMPT_COLOR2}\u\e[01;32m\e[${PROMPT_COLOR3}@\e[01;32m\e[${PROMPT_COLOR}\h\e[1;31m:\e[1;34m\w\e[1;31m \n  \$\[\e[0m\] '
+
+export HISTFILE=/home/jcompost/.bash_history
