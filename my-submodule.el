@@ -23,7 +23,14 @@
 ;; up-to-date.  Hence these are submodules and overide the default
 ;; path.
 
+(require 'status)
+(require 'j2m-tools)
+(require 'rscope)
+(require 'google-maps)
+(require 'offlineimap)
+(require 'git-commit-mode)
 (require 'magit)
+(require 'dtrt-indent)
 (add-to-list 'load-path j2m-config-directory "/gnus/lisp")
 (require 'gnus)
 (require 'gnus-demon)
@@ -34,5 +41,6 @@
 (require 'org)
 (require 'org-agenda)
 (require 'org-capture)
+(require 'org-clock)
 
 (provide 'my-submodule)
