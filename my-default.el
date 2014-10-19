@@ -97,6 +97,58 @@
 mentioned in an erc channel" t)
 (eval-after-load "erc" '(erc-nick-notify-mode t))
 
+;; Org-mode
+(setq org-completion-use-ido t
+      org-agenda-include-diary t
+      org-agenda-window-setup 'other-window
+      org-directory (expand-file-name "~/Documents"))
+(setq org-capture-templates
+      `(("a" "Add an appointment into the agenda" entry
+	 (file+headline ,(concat org-directory "/Agenda.org") "Appointments")
+	 "* %?\n %^T\n ")
+      	("t" "Add a task" entry
+	 (file+headline ,(concat org-directory "/Tasks.org") "Tasks")
+	 "* TODO %? %^G\n %^T\n%a\n ")
+      	("e" "Add a task about Emacs" entry
+	 (file+headline ,(concat org-directory "/EmacsTasks.org") "Tasks")
+	 "* TODO %? %^G")
+	("n" "Add a note entry" entry
+	 (file+headline ,(concat org-directory "/Notes.org") "Notes")
+	 "* %? %^G\n %a\n")))
+(dolist (cur org-capture-templates)
+  (let ((target (nth 3 cur)))
+    (when (or (eq (car target) 'file)
+	      (eq (car target) 'file+headline))
+      (add-to-list 'org-agenda-files (cadr (nth 3 cur))))))
+
+(defface my-org-todo-base-face
+  '((t (:weight bold :box (:line-width 2 :style released-button))))
+  "Base face for org-todo")
+(face-spec-set 'org-todo
+  '((t :background "red1" :foreground "white" :inherit 'my-org-todo-base-face)))
+(face-spec-set 'org-done
+  '((t :background "forest green" :foreground "white" :inherit 'my-org-todo-base-face)))
+(defface my-org-todo-on-hold-face
+  '((t :background "RoyalBlue" :foreground "white" :inherit 'my-org-todo-base-face))
+  "Face used for todo keywords that indicate \"on-hold\" items.")
+(defface my-org-todo-in-progress-face
+  '((t :background "orange" :foreground "black" :inherit 'my-org-todo-base-face))
+  "Face used for todo keywords that indicate \"in-progress\" items.")
+(defface my-org-todo-almost-done-face
+  '((t :background "yellow" :foreground "black" :inherit 'my-org-todo-base-face))
+  "Face used for todo keywords that indicate \"almost-done\" items.")
+
+(setq org-todo-keyword-faces
+      '(("NEW"		.	org-todo)
+	("OPEN"		.	org-todo)
+	("IN-ANALYSIS"	.	my-org-todo-in-progress-face)
+	("IN-PROGRESS"	.	my-org-todo-in-progress-face)
+	("IMPLEMENTED"	.	my-org-todo-almost-done-face)
+	("MERGED"	.	org-done)
+	("VALIDATION"	.	my-org-todo-almost-done-face)
+	("SUBMITTED"	.	my-org-todo-almost-done-face)
+	("CLOSED"	.	org-done)))
+
 ;; My key shortcuts
 (require 'my-keys)
 
