@@ -199,6 +199,10 @@ mentioned in an erc channel" t)
       compilation-window-height 15
       compilation-ask-about-save nil)
 
+;; Status
+(status-add-to-right 'status-gnus)
+(turn-on-status)
+
 ;; My key shortcuts
 (require 'my-keys)
 
