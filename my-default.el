@@ -53,6 +53,9 @@
 (desktop-save-mode t)
 (savehist-mode t)
 
+;; Dictionary
+(setq ispell-dictionary "english")
+
 ;; My favorite file selection mode is IDO !
 (ido-mode t)
 (setq ido-use-filename-at-point 'guess)
@@ -182,7 +185,6 @@ mentioned in an erc channel" t)
   (set-fill-column 80)
   (turn-on-orgstruct++)
   (turn-on-auto-fill)
-  (ispell-change-dictionary "english")
   (flyspell-mode))
 (add-hook 'message-mode-hook 'my-message-mode-hook)
 
