@@ -149,6 +149,45 @@ mentioned in an erc channel" t)
 	("SUBMITTED"	.	my-org-todo-almost-done-face)
 	("CLOSED"	.	org-done)))
 
+;; Email configuration
+(require 'smtpmail)
+(setq ;; SMTP
+      user-mail-address "jeremy.compostella@gmail.com"
+      user-full-name "Jeremy Compostella"
+      message-send-mail-function 'smtpmail-send-it
+      smtpmail-smtp-server "smtp.gmail.com"
+      smtpmail-smtp-service 587
+      ;; GNUS
+      gnus-select-method '(nnimap "local"
+				  (nnimap-address "localhost")
+				  (nnimap-server-port 993)
+				  (nnimap-stream ssl)
+				  (nnimap-inbox "INBOX"))
+      gnus-use-scoring t
+      gnus-use-adaptive-scoring t
+      gnus-use-full-window nil
+      gnus-summary-line-format "%U%R%z%-16,16&user-date; %*%(%-15,15f%)║ %B %s\n"
+      gnus-sum-thread-tree-indent " "
+      gnus-sum-thread-tree-root "● "
+      gnus-sum-thread-tree-false-root " ○ "
+      gnus-sum-thread-tree-single-indent " ● "
+      gnus-sum-thread-tree-leaf-with-other "├► "
+      gnus-sum-thread-tree-single-leaf "╰► "
+      gnus-sum-thread-tree-vertical "│"
+      gnus-thread-sort-functions '(gnus-thread-sort-by-most-recent-date))
+
+(require 'ispell)
+(require 'flyspell)
+(defun my-message-mode-hook ()
+  (set-fill-column 80)
+  (turn-on-orgstruct++)
+  (turn-on-auto-fill)
+  (ispell-change-dictionary "english")
+  (flyspell-mode))
+(add-hook 'message-mode-hook 'my-message-mode-hook)
+
+(add-hook 'gnus-before-startup-hook 'offlineimap)
+
 ;; My key shortcuts
 (require 'my-keys)
 
