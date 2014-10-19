@@ -89,3 +89,4 @@
 (global-set-key (kbd "C-<") 'decrement-number-at-point)
 (global-set-key (kbd "M-P") (lambda () (interactive) (move-lines -1)))
 (global-set-key (kbd "M-N") (lambda () (interactive) (move-lines 1)))
+(provide 'my-keys)
