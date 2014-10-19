@@ -58,6 +58,10 @@
   '(add-hook 'makefile-mode-hook 'my-makefile-mode-hook))
 
 (defun release-my-move-keys (map)
+  "I use C-M-[jklm] keys to navigate respectively to the down,
+up, left and right window.  Some mode like org-mode for instance
+use these keys too.  This function is used to unset these local
+mode definitions."
   (define-key map (kbd "C-M-j") nil)
   (define-key map (kbd "C-M-k") nil)
   (define-key map (kbd "C-M-l") nil)
