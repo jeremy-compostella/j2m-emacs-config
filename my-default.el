@@ -191,6 +191,7 @@ mentioned in an erc channel" t)
 (add-hook 'gnus-before-startup-hook 'offlineimap)
 
 ;; git-commit-mode
+(setq git-commit-summary-max-length 65)
 (add-hook 'git-commit-mode-hook 'my-message-mode-hook)
 
 ;; Compilation
