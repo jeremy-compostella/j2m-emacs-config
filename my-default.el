@@ -46,6 +46,9 @@
 (setq custom-theme-directory (concat j2m-config-directory "/theme"))
 (load-theme 'j2m t)
 
+;; Load local submodule
+(require 'my-submodule)
+
 ;; Desktop mode and savehist
 (desktop-save-mode t)
 (savehist-mode t)
