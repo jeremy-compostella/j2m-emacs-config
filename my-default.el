@@ -38,10 +38,10 @@
 (show-paren-mode t)
 
 (cond ((eq system-type 'windows-nt)
-       (set-default-font "-outline-Arial monospaced for SAP-normal-normal-normal-mono-*-*-*-*-c-*-iso10646-1")
+       (set-default-font "-outline-Arial monospaced for SAP-normal-normal-normal-mono-*-*-*-*-c-*-iso10646-1" t t)
        (set-face-attribute 'default nil :height 80))
       ((eq system-type 'gnu/linux)
-       (set-default-font "-unknown-DejaVu Sans Mono-normal-normal-normal-*-10-*-*-*-m-0-iso10646-1")))
+       (set-default-font "-unknown-DejaVu Sans Mono-normal-normal-normal-*-10-*-*-*-m-0-iso10646-1" t t)))
 
 (setq custom-theme-directory (concat j2m-config-directory "/theme"))
 (load-theme 'j2m t)
