@@ -102,6 +102,45 @@ mode definitions."
 (eval-after-load 'shell
   '(add-hook 'shell-mode-hook 'my-shell-mode-hook))
 
+(defun my-gnus-show-my-inbox ()
+  (interactive)
+  (unless (gnus-alive-p)
+    (gnus)
+    (quit-window))
+  (gnus-summary-read-group "INBOX" nil t))
+(global-set-key (kbd "C-x M") 'my-gnus-show-my-inbox)
+
+(defun my-gnus-kill-open-articles ()
+  (interactive)
+  (save-selected-window
+    (dolist (w (window-list-1))
+      (with-selected-window w
+	(when (or (eq major-mode 'gnus-article-mode)
+		  (string= "*Article INBOX*" (buffer-name (current-buffer))))
+	  (kill-buffer-and-window))))))
+
+(defun my-gnus-summary-mode-hook ()
+  (release-my-move-keys gnus-summary-mode-map)
+  (define-key gnus-summary-mode-map (kbd "q")
+    (lambda ()
+      (interactive)
+      (my-gnus-kill-open-articles)
+      (quit-window)))
+  (define-key gnus-summary-mode-map (kbd "M-g")
+    (lambda ()
+      (interactive)
+      (my-gnus-kill-open-articles)
+      (gnus-summary-rescan-group))))
+(add-hook 'gnus-summary-mode-hook 'my-gnus-summary-mode-hook)
+
+(defun my-gnus-group-mode-hook ()
+  (release-my-move-keys gnus-group-mode-map))
+(add-hook 'gnus-group-mode-hook 'my-gnus-group-mode-hook)
+
+(defun my-message-mode-hook ()
+  (release-my-move-keys message-mode-map))
+(add-hook 'message-mode-hook 'my-message-mode-hook)
+
 (defun my-magit-mode-hook ()
   (define-key magit-mode-map (kbd "M-n") 'diff-hunk-next)
   (define-key magit-mode-map (kbd "M-p") 'diff-hunk-prev))
