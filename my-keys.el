@@ -27,11 +27,20 @@
 (global-set-key (kbd "C-M-m") 'windmove-right)
 (global-set-key (kbd "C-x à") 'kill-buffer-and-window)
 
-;; Personal global key configuration
+;; Personal global keys configuration
+(global-set-key (kbd "C-x p") 'previous-error)
+(global-set-key (kbd "C-x n") 'next-error)
+(global-set-key (kbd "C-j") 'newline)
 (global-set-key (kbd "C-z") nil)
 (global-set-key (kbd "C-c q") 'quit-window)
+(global-set-key (kbd "C-ù") 'delete-backward-char)
+(global-set-key (kbd "C-M-ù") 'backward-kill-word)
+(global-set-key (kbd "C-x m") 'message-mail)
+(global-set-key (kbd "C-c SPC") (lambda ()
+				  (interactive)
+				  (with-current-buffer "*compilation*"
+				    (recompile))))
 
-;; Basic mode hook
 ;; Basic mode hooks
 (defun my-code-mode-hook (map)
   (define-key map (kbd "M-n") 'forward-paragraph)
