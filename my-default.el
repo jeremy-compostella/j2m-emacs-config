@@ -181,18 +181,18 @@ mentioned in an erc channel" t)
 
 (require 'ispell)
 (require 'flyspell)
-(defun my-message-mode-hook ()
+(defun my-message-edit-hook ()
   (set-fill-column 80)
   (turn-on-orgstruct++)
   (turn-on-auto-fill)
   (flyspell-mode))
-(add-hook 'message-mode-hook 'my-message-mode-hook)
+(add-hook 'message-mode-hook 'my-message-edit-hook)
 
 (add-hook 'gnus-before-startup-hook 'offlineimap)
 
 ;; git-commit-mode
 (setq git-commit-summary-max-length 65)
-(add-hook 'git-commit-mode-hook 'my-message-mode-hook)
+(add-hook 'git-commit-mode-hook 'my-message-edit-hook)
 
 ;; Compilation
 (setq compilation-scroll-output t
