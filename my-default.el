@@ -191,6 +191,12 @@ mentioned in an erc channel" t)
 ;; git-commit-mode
 (add-hook 'git-commit-mode-hook 'my-message-mode-hook)
 
+;; Compilation
+(setq compilation-scroll-output t
+      compilation-read-command nil
+      compilation-window-height 15
+      compilation-ask-about-save nil)
+
 ;; My key shortcuts
 (require 'my-keys)
 
