@@ -97,6 +97,11 @@ mode definitions."
 (global-set-key (kbd "C-c o a") 'org-agenda-list)
 (global-set-key (kbd "C-c o t") 'org-todo-list)
 
+(defun my-shell-mode-hook ()
+  (release-my-move-keys shell-mode-map))
+(eval-after-load 'shell
+  '(add-hook 'shell-mode-hook 'my-shell-mode-hook))
+
 (defun my-magit-mode-hook ()
   (define-key magit-mode-map (kbd "M-n") 'diff-hunk-next)
   (define-key magit-mode-map (kbd "M-p") 'diff-hunk-prev))
