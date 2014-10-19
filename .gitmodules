@@ -16,3 +16,6 @@
 [submodule "org-mode"]
 	path = org-mode
 	url = http://repo.or.cz/org-mode.git
+[submodule "rscope"]
+	path = rscope
+	url = https://github.com/rjarzmik/rscope.git
