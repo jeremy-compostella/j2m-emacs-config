@@ -71,23 +71,26 @@
 (eval-after-load 'sh-script
   '(add-hook 'sh-mode-hook 'my-sh-mode-hook))
 
-(defun release-my-move-keys (map)
-  "I use C-M-[jklm] keys to navigate respectively to the down,
-up, left and right window.  Some mode like org-mode for instance
-use these keys too.  This function is used to unset these local
-mode definitions."
+(defun release-my-global-keys (map)
+  "I have defined some personal global key bindings that conflict
+with some mode like org-mode for instance.  This function is used
+to unset these local mode definitions."
   (define-key map (kbd "C-M-j") nil)
   (define-key map (kbd "C-M-k") nil)
   (define-key map (kbd "C-M-l") nil)
-  (define-key map (kbd "C-M-m") nil))
+  (define-key map (kbd "C-M-m") nil)
+  (define-key map (kbd "C-c SPC") nil))
 
 (defun my-hexl-mode-hook ()
-  (release-my-move-keys hexl-mode-map))
+  (release-my-global-keys hexl-mode-map))
 (eval-after-load 'hexl
   '(add-hook 'hexl-mode-hook 'my-hexl-mode-hook))
 
 (defun my-org-mode-hook ()
-  (release-my-move-keys org-mode-map))
+  (release-my-global-keys org-mode-map)
+  (set-fill-column 80)
+  (turn-on-auto-fill)
+  (flyspell-mode))
 (add-hook 'org-mode-hook 'my-org-mode-hook)
 (defun my-org-agenda-mode-hook ()
   (define-key org-agenda-mode-map (kbd "q") 'quit-window))
@@ -98,7 +101,7 @@ mode definitions."
 (global-set-key (kbd "C-c o t") 'org-todo-list)
 
 (defun my-shell-mode-hook ()
-  (release-my-move-keys shell-mode-map))
+  (release-my-global-keys shell-mode-map))
 (eval-after-load 'shell
   '(add-hook 'shell-mode-hook 'my-shell-mode-hook))
 
@@ -120,7 +123,7 @@ mode definitions."
 	  (kill-buffer-and-window))))))
 
 (defun my-gnus-summary-mode-hook ()
-  (release-my-move-keys gnus-summary-mode-map)
+  (release-my-global-keys gnus-summary-mode-map)
   (define-key gnus-summary-mode-map (kbd "q")
     (lambda ()
       (interactive)
@@ -134,11 +137,11 @@ mode definitions."
 (add-hook 'gnus-summary-mode-hook 'my-gnus-summary-mode-hook)
 
 (defun my-gnus-group-mode-hook ()
-  (release-my-move-keys gnus-group-mode-map))
+  (release-my-global-keys gnus-group-mode-map))
 (add-hook 'gnus-group-mode-hook 'my-gnus-group-mode-hook)
 
 (defun my-message-mode-hook ()
-  (release-my-move-keys message-mode-map))
+  (release-my-global-keys message-mode-map))
 (add-hook 'message-mode-hook 'my-message-mode-hook)
 
 (defun my-magit-mode-hook ()
