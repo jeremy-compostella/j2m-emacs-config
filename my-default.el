@@ -190,6 +190,10 @@ mentioned in an erc channel" t)
 
 (add-hook 'gnus-before-startup-hook 'offlineimap)
 
+;; Mail search : Notmuch rocks !
+(require 'notmuch)
+(define-key gnus-summary-mode-map (kbd "M-s") 'notmuch-search)
+
 ;; git-commit-mode
 (setq git-commit-summary-max-length 65)
 (add-hook 'git-commit-mode-hook 'my-message-edit-hook)
