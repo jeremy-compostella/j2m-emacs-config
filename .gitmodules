@@ -31,3 +31,6 @@
 [submodule "dtrt-indent"]
 	path = dtrt-indent
 	url = https://github.com/jscheid/dtrt-indent.git
+[submodule "notmuch"]
+	path = notmuch
+	url = git://git.notmuchmail.org/git/notmuch
