@@ -30,6 +30,7 @@
 (require 'offlineimap)
 (require 'git-commit-mode)
 (require 'magit)
+(require 'magit-blame)
 (require 'dtrt-indent)
 (add-to-list 'load-path (concat j2m-config-directory "/gnus/lisp"))
 (require 'gnus)
