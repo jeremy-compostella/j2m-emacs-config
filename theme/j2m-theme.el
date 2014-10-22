@@ -58,7 +58,7 @@ Semantic, and Ansi-Color faces are included.")
    `(cursor ((,class (:background ,red-1))))
    ;; Highlighting faces
    `(fringe ((,class (:background ,alum-7))))
-   `(highlight ((,class (:background "grey25"))))
+   `(highlight ((,class (:foreground nil :background "grey25"))))
    `(region ((,class (:background ,alum-5))))
    `(secondary-selection ((,class (:background ,blue-3))))
    `(isearch ((,class (:foreground ,alum-1 :background ,orange-3))))
