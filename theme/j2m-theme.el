@@ -131,8 +131,6 @@ Semantic, and Ansi-Color faces are included.")
    `(gnus-summary-normal-ticked ((,class (:foreground "gold"))))
    `(gnus-summary-normal-undownloaded ((,class (:foreground ,alum-1))))
    `(gnus-summary-normal-unread ((,class (:foreground ,alum-1 :weight bold))))
-   ;; (gnus-summary-selected ((t (:background "brown4" :foreground "white"))))
-
    ;; Message faces
    `(message-header-name ((,class (:foreground ,blue-1))))
    `(message-header-cc ((,class (:foreground ,butter-3))))
