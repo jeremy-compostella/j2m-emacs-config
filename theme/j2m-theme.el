@@ -164,7 +164,15 @@ Semantic, and Ansi-Color faces are included.")
    `(semantic-decoration-on-unparsed-includes
      ((,class (:background ,alum-5.5))))
    `(semantic-tag-boundary-face ((,class (:overline ,blue-1))))
-   `(semantic-unmatched-syntax-face ((,class (:underline ,red-1)))))
+   `(semantic-unmatched-syntax-face ((,class (:underline ,red-1))))
+   ;; Status
+   `(status-time-face ((,class (:height 1.3 :foreground ,orange-1 :weight bold))))
+   `(status-date-face ((,class (:foreground ,orange-1 :weight bold))))
+   `(status-project-manager-face ((,class (:height 1.3 :foreground ,orange-1 :weight bold))))
+   `(status-battery-charging-face ((,class (:foreground ,cham-0))))
+   `(status-battery-charged-face ((, class (:foreground ,cham-0))))
+   `(status-battery-discharging-fmt ((, class (:foreground ,red-0))))
+   `(status-purple-face ((, class (:foreground ,alum-1)))))
 
   (custom-theme-set-variables
    'j2m
