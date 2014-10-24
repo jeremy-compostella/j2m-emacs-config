@@ -172,7 +172,10 @@ Semantic, and Ansi-Color faces are included.")
    `(status-battery-charging-face ((,class (:foreground ,cham-0))))
    `(status-battery-charged-face ((, class (:foreground ,cham-0))))
    `(status-battery-discharging-fmt ((, class (:foreground ,red-0))))
-   `(status-purple-face ((, class (:foreground ,alum-1)))))
+   `(status-purple-face ((, class (:foreground ,alum-1))))
+   ;; ERC
+   `(erc-input-face ((,class (:foreground ,blue-1))))
+   `(erc-my-nick-face ((,class (:foreground ,blue-1)))))
 
   (custom-theme-set-variables
    'j2m
