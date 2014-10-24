@@ -110,6 +110,11 @@ to unset these local mode definitions."
 (eval-after-load 'notmuch
   '(add-hook 'notmuch-show-hook 'my-notmuch-mode-hook))
 
+(defun my-diff-mode-hook ()
+  (release-my-global-keys diff-mode-map))
+(eval-after-load 'diff
+  '(add-hook 'diff-mode-hook 'my-diff-mode-hook))
+
 (defun my-gnus-show-my-inbox ()
   (interactive)
   (unless (gnus-alive-p)
