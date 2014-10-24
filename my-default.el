@@ -142,15 +142,11 @@ mentioned in an erc channel" t)
   "Face used for todo keywords that indicate \"almost-done\" items.")
 
 (setq org-todo-keyword-faces
-      '(("NEW"		.	org-todo)
-	("OPEN"		.	org-todo)
-	("IN-ANALYSIS"	.	my-org-todo-in-progress-face)
+      '(("IN-ANALYSIS"	.	my-org-todo-in-progress-face)
 	("IN-PROGRESS"	.	my-org-todo-in-progress-face)
 	("IMPLEMENTED"	.	my-org-todo-almost-done-face)
-	("MERGED"	.	org-done)
 	("VALIDATION"	.	my-org-todo-almost-done-face)
-	("SUBMITTED"	.	my-org-todo-almost-done-face)
-	("CLOSED"	.	org-done)))
+	("SUBMITTED"	.	my-org-todo-almost-done-face)))
 
 ;; Email configuration
 (require 'smtpmail)
