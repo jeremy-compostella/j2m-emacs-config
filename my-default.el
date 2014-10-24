@@ -104,7 +104,8 @@ mentioned in an erc channel" t)
 (setq org-completion-use-ido t
       org-agenda-include-diary t
       org-agenda-window-setup 'other-window
-      org-directory (expand-file-name "~/Documents"))
+      org-directory (expand-file-name "~/Documents")
+      org-confirm-babel-evaluate nil)
 (setq org-capture-templates
       `(("a" "Add an appointment into the agenda" entry
 	 (file+headline ,(concat org-directory "/Agenda.org") "Appointments")
