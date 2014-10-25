@@ -110,15 +110,15 @@ mentioned in an erc channel" t)
       `(("a" "Add an appointment into the agenda" entry
 	 (file+headline ,(concat org-directory "/Agenda.org") "Appointments")
 	 "* %?\n %^T\n ")
-      	("t" "Add a task" entry
-	 (file+headline ,(concat org-directory "/Tasks.org") "Tasks")
-	 "* TODO %? %^G\n %^T\n%a\n ")
+      	("e" "Add a task about Emacs" entry
+	 (file+headline ,(concat org-directory "/EmacsTasks.org") "Tasks")
+	 "* TODO %? %^G")
       	("n" "Add a note entry" entry
 	 (file+headline ,(concat org-directory "/Notes.org") "Notes")
 	 "* %? %^G\n %a\n")
-	("e" "Add a task about Emacs" entry
-	 (file+headline ,(concat org-directory "/EmacsTasks.org") "Tasks")
-	 "* TODO %? %^G")))
+	("t" "Add a task" entry
+	 (file+headline ,(concat org-directory "/Tasks.org") "Tasks")
+	 "* TODO %? %^G\n %^T\n%a\n ")))
 (dolist (cur org-capture-templates)
   (let ((target (nth 3 cur)))
     (when (or (eq (car target) 'file)
