@@ -161,10 +161,13 @@ to unset these local mode definitions."
   (define-key magit-mode-map (kbd "M-n") 'diff-hunk-next)
   (define-key magit-mode-map (kbd "M-p") 'diff-hunk-prev))
 (add-hook 'magit-mode-hook 'my-magit-mode-hook)
-(global-set-key (kbd "C-c m s") 'magit-status)
-(global-set-key (kbd "C-c m l") 'magit-log)
-(global-set-key (kbd "C-c m b") 'magit-blame-mode)
-(global-set-key (kbd "C-c m r") 'magit-reflog)
+
+(global-set-key (kbd "C-c m")
+		(define-prefix-command 'my-magit-prefix))
+(define-key 'my-magit-prefix "s" 'magit-status)
+(define-key 'my-magit-prefix "l" 'magit-log)
+(define-key 'my-magit-prefix "b" 'magit-blame-mode)
+(define-key 'my-magit-prefix "r" 'magit-reflog)
 
 (global-set-key (kbd "C-x d") 'duplicate-lines)
 (global-set-key (kbd "C-c k") 'kill-line-at-point)
