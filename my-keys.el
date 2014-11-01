@@ -95,10 +95,13 @@ to unset these local mode definitions."
 (defun my-org-agenda-mode-hook ()
   (define-key org-agenda-mode-map (kbd "q") 'quit-window))
 (add-hook 'org-agenda-mode-hook 'my-org-agenda-mode-hook)
-(global-set-key (kbd "C-c o f") 'org-switchb)
-(global-set-key (kbd "C-c o c") 'org-capture)
-(global-set-key (kbd "C-c o a") 'org-agenda-list)
-(global-set-key (kbd "C-c o t") 'org-todo-list)
+
+(global-set-key (kbd "C-c o")
+		(define-prefix-command 'my-org-prefix))
+(define-key 'my-org-prefix "f" 'org-switchb)
+(define-key 'my-org-prefix "c" 'org-capture)
+(define-key 'my-org-prefix "a" 'org-agenda-list)
+(define-key 'my-org-prefix "t" 'org-todo-list)
 
 (defun my-shell-mode-hook ()
   (release-my-global-keys shell-mode-map))
