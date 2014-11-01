@@ -91,6 +91,11 @@
     t))
 (add-hook 'kill-emacs-query-functions 'confirm-exit-emacs)
 
+;; Tramp
+;;  Allow /sudo on remote machines over ssh
+(set-default 'tramp-default-proxies-alist
+	     '((".*" "\\`root\\'" "/ssh:%h:")))
+
 ;; Dired mode
 (setq dired-listing-switches "-alh")
 
