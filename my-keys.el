@@ -71,6 +71,11 @@
 (eval-after-load 'sh-script
   '(add-hook 'sh-mode-hook 'my-sh-mode-hook))
 
+(defun my-conf-mode-hook ()
+  (my-code-mode-hook conf-mode-map))
+(eval-after-load 'conf-mode
+  '(add-hook 'conf-unix-mode-hook 'my-conf-mode-hook))
+
 (defun release-my-global-keys (map)
   "I have defined some personal global key bindings that conflict
 with some mode like org-mode for instance.  This function is used
