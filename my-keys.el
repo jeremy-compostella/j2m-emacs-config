@@ -25,6 +25,7 @@
 (global-set-key (kbd "C-M-k") 'windmove-up)
 (global-set-key (kbd "C-M-l") 'windmove-left)
 (global-set-key (kbd "C-M-;") 'windmove-right)
+(setq windmove-wrap-around t)
 
 ;; Personal global keys configuration
 (global-set-key (kbd "C-x p") 'previous-error)
