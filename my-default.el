@@ -131,6 +131,15 @@ mentioned in an erc channel" t)
 	      (eq (car target) 'file+headline))
       (add-to-list 'org-agenda-files (cadr (nth 3 cur))))))
 
+;; Automatic org-agenda to appt
+(defun update-appt-from-org-agenda ()
+  (let ((already-open (get-buffer "Agenda.org"))
+	(buf (find-file-noselect (concat org-directory "/Agenda.org"))))
+    (when (or (not already-open) (buffer-modified-p buf))
+      (with-current-buffer buf (save-buffer))
+      (org-agenda-to-appt t))))
+(run-at-time t 60 'update-appt-from-org-agenda)
+
 (defface my-org-todo-base-face
   '((t (:weight bold :box (:line-width 2 :style released-button))))
   "Base face for org-todo")
