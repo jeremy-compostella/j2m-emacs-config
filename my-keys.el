@@ -107,6 +107,8 @@ to unset these local mode definitions."
 (define-key 'my-org-prefix "c" 'org-capture)
 (define-key 'my-org-prefix "a" 'org-agenda-list)
 (define-key 'my-org-prefix "t" 'org-todo-list)
+(define-key 'my-org-prefix "l" 'org-store-link)
+
 
 (defun my-shell-mode-hook ()
   (release-my-global-keys shell-mode-map))
