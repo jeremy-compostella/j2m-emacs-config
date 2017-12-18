@@ -83,7 +83,7 @@ to unset these local mode definitions."
   (define-key map (kbd "C-M-j") nil)
   (define-key map (kbd "C-M-k") nil)
   (define-key map (kbd "C-M-l") nil)
-  (define-key map (kbd "C-M-m") nil)
+  (define-key map (kbd "C-M-;") nil)
   (define-key map (kbd "C-c SPC") nil))
 
 (defun my-hexl-mode-hook ()
