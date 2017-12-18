@@ -79,7 +79,7 @@
       history-length 500)
 (set-language-environment 'utf-8)
 
-;; I always want to be prompter to exit GNU/Emacs
+;; I always want to be prompted to exit GNU/Emacs
 (require 'tramp)
 (defun confirm-exit-emacs ()
   "Ask for confirmation before exiting emacs."
