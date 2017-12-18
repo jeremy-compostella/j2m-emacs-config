@@ -167,9 +167,10 @@ to unset these local mode definitions."
 (global-set-key (kbd "C-c m")
 		(define-prefix-command 'my-magit-prefix))
 (define-key 'my-magit-prefix "s" 'magit-status)
-(define-key 'my-magit-prefix "l" 'magit-log)
-(define-key 'my-magit-prefix "b" 'magit-blame-mode)
-(define-key 'my-magit-prefix "r" 'magit-reflog)
+
+(define-key 'my-magit-prefix "l" 'magit-log-head)
+(define-key 'my-magit-prefix "b" 'magit-blame)
+(define-key 'my-magit-prefix "r" 'magit-reflog-current)
 
 (global-set-key (kbd "C-x d") 'duplicate-lines)
 (global-set-key (kbd "C-c k") 'kill-line-at-point)
