@@ -181,7 +181,7 @@ mentioned in an erc channel" t)
       gnus-use-scoring t
       gnus-use-adaptive-scoring t
       gnus-use-full-window nil
-      gnus-summary-line-format "%U%R%z%-16,16&user-date; %*%(%-15,15f%)║ %B %s\n"
+      gnus-summary-line-format "%U%R%(%-14,14&user-date; %*%-15,15f%B %s%)\n"
       gnus-sum-thread-tree-indent " "
       gnus-sum-thread-tree-root "● "
       gnus-sum-thread-tree-false-root " ○ "
