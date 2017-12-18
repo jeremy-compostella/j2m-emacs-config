@@ -175,20 +175,29 @@ to unset these local mode definitions."
       (interactive)
       (my-gnus-kill-open-articles)
       (gnus-summary-rescan-group))))
-(add-hook 'gnus-summary-mode-hook 'my-gnus-summary-mode-hook)
+(eval-after-load 'gnus-sum
+  '(add-hook 'gnus-summary-mode-hook 'my-gnus-summary-mode-hook))
 
 (defun my-gnus-group-mode-hook ()
   (release-my-global-keys gnus-group-mode-map))
-(add-hook 'gnus-group-mode-hook 'my-gnus-group-mode-hook)
+(eval-after-load 'gnus-group
+  '(add-hook 'gnus-group-mode-hook 'my-gnus-group-mode-hook))
 
 (defun my-message-mode-hook ()
   (release-my-global-keys message-mode-map))
-(add-hook 'message-mode-hook 'my-message-mode-hook)
+(eval-after-load 'message
+  '(add-hook 'message-mode-hook 'my-message-mode-hook))
+
+(defun my-inferior-python-mode-hook ()
+  (release-my-global-keys inferior-python-mode-map))
+(eval-after-load 'python
+  '(add-hook 'inferior-python-mode-hook 'my-inferior-python-mode-hook))
 
 (defun my-magit-mode-hook ()
   (define-key magit-mode-map (kbd "M-n") 'diff-hunk-next)
   (define-key magit-mode-map (kbd "M-p") 'diff-hunk-prev))
-(add-hook 'magit-mode-hook 'my-magit-mode-hook)
+(eval-after-load 'magit-mode
+  '(add-hook 'magit-mode-hook 'my-magit-mode-hook))
 
 (global-set-key (kbd "C-c m")
 		(define-prefix-command 'my-magit-prefix))
