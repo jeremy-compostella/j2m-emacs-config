@@ -56,6 +56,11 @@
 (eval-after-load 'cc-mode
   '(add-hook 'c-mode-hook 'my-c-mode-hook))
 
+(defun my-c++-mode-hook ()
+  (my-code-mode-hook c++-mode-map))
+(eval-after-load 'cc-mode
+  '(add-hook 'c++-mode-hook 'my-c++-mode-hook))
+
 (defun my-emacs-lisp-mode-hook ()
   (my-code-mode-hook emacs-lisp-mode-map))
 (eval-after-load 'lisp-mode
@@ -75,6 +80,16 @@
   (my-code-mode-hook conf-mode-map))
 (eval-after-load 'conf-mode
   '(add-hook 'conf-unix-mode-hook 'my-conf-mode-hook))
+
+(defun my-python-mode-hook ()
+  (my-code-mode-hook python-mode-map))
+(eval-after-load 'python
+  '(add-hook 'python-mode-hook 'my-python-mode-hook))
+
+(defun my-java-mode-hook ()
+  (my-code-mode-hook java-mode-map))
+(eval-after-load 'cc-mode
+  '(add-hook 'java-mode-hook 'my-java-mode-hook))
 
 (defun release-my-global-keys (map)
   "I have defined some personal global key bindings that conflict
@@ -109,6 +124,17 @@ to unset these local mode definitions."
 (define-key 'my-org-prefix "t" 'org-todo-list)
 (define-key 'my-org-prefix "l" 'org-store-link)
 
+(defun my-text-mode-hook ()
+  (set-fill-column 70)
+  (turn-on-auto-fill)
+  (flyspell-mode))
+(eval-after-load 'text-mode
+  '(add-hook 'text-mode-hook 'my-text-mode-hook))
+
+(defun my-pdf-view-mode-hook ()
+  (release-my-global-keys pdf-view-mode-map))
+(eval-after-load 'view
+  '(add-hook 'view-mode-hook 'my-pdf-view-mode-hook))
 
 (defun my-shell-mode-hook ()
   (release-my-global-keys shell-mode-map))
