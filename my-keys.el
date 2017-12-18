@@ -115,11 +115,6 @@ to unset these local mode definitions."
 (eval-after-load 'shell
   '(add-hook 'shell-mode-hook 'my-shell-mode-hook))
 
-(defun my-notmuch-mode-hook ()
-  (release-my-global-keys notmuch-show-mode-map))
-(eval-after-load 'notmuch
-  '(add-hook 'notmuch-show-hook 'my-notmuch-mode-hook))
-
 (defun my-diff-mode-hook ()
   (release-my-global-keys diff-mode-map))
 (eval-after-load 'diff
