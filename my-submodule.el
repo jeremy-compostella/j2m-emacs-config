@@ -25,6 +25,19 @@
 
 (require 'status)
 (require 'j2m-tools)
+(require 'org-msg)
+(setq org-msg-options "html-postamble:nil H:5 num:nil ^:{} toc:nil")
+(setq org-msg-startup "hidestars indent inlineimages")
+(global-set-key (kbd "C-x m") 'org-msg-new)
+(setq org-msg-signature "
+
+Regards,
+
+#+begin_signature
+-- *Jeremy* \\\\
+/One Emacs to rule them all/
+#+end_signature")
+
 (require 'rscope)
 (require 'google-maps)
 (require 'offlineimap)
