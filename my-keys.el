@@ -35,7 +35,7 @@
 (global-set-key (kbd "C-c q") 'quit-window)
 (global-set-key (kbd "C-'") 'delete-backward-char)
 (global-set-key (kbd "C-M-'") 'backward-kill-word)
-(global-set-key (kbd "C-x m") 'message-mail)
+(global-set-key (kbd "C-x m") 'org-msg-new)
 (global-set-key (kbd "C-c SPC") (lambda ()
 				  (interactive)
 				  (with-current-buffer "*compilation*"
