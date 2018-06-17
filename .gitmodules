@@ -37,3 +37,6 @@
 [submodule "org-msg"]
 	path = org-msg
 	url = https://github.com/jeremy-compostella/org-msg.git
+[submodule "pdfgrep"]
+	path = pdfgrep
+	url = https://github.com/jeremy-compostella/pdfgrep.git

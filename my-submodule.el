@@ -36,7 +36,7 @@ Regards,
 -- *Jeremy* \\\\
 /One Emacs to rule them all/
 #+end_signature")
-
+(require 'pdfgrep)
 (require 'rscope)
 (require 'google-maps)
 (require 'offlineimap)
