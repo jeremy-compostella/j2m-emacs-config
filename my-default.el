@@ -211,6 +211,9 @@ mentioned in an erc channel" t)
 (status-add-to-right 'status-gnus)
 (turn-on-status)
 
+;; Package locations
+(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
+
 ;; My key shortcuts
 (require 'my-keys)
 
