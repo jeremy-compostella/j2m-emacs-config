@@ -37,14 +37,16 @@
 (column-number-mode t)
 (show-paren-mode t)
 
-(cond ((eq system-type 'windows-nt)
-       (set-default-font "-outline-Arial monospaced for SAP-normal-normal-normal-mono-*-*-*-*-c-*-iso10646-1" t t)
-       (set-face-attribute 'default nil :height 80))
-      ((eq system-type 'gnu/linux)
-       (set-default-font "-unknown-DejaVu Sans Mono-normal-normal-normal-*-10-*-*-*-m-0-iso10646-1" t t)))
-
 (setq custom-theme-directory (concat j2m-config-directory "/theme"))
 (load-theme 'j2m t)
+
+;; (cond ((eq system-type 'windows-nt)
+;;        (set-default-font "-outline-Arial monospaced for SAP-normal-normal-normal-mono-*-*-*-*-c-*-iso10646-1" t t)
+;;        (set-face-attribute 'default nil :height 80))
+;;       ((eq system-type 'gnu/linux)
+;;        (set-default-font "-PfEd-DejaVu Sans Mono-normal-normal-normal-*-*-*-*-*-m-0-iso10646-1" t t)
+;;        ;; (set-face-attribute 'default nil :height 100)
+;;        ))
 
 ;; Load local submodule
 (require 'my-submodule)
@@ -99,12 +101,6 @@
 ;; Dired mode
 (setq dired-listing-switches "-alh")
 (add-hook 'dired-mode-hook 'turn-on-gnus-dired-mode)
-
-;; ERC
-(autoload 'erc-nick-notify-mode "erc-nick-notify"
-  "Minor mode that calls `erc-nick-notify-cmd' when his nick gets
-mentioned in an erc channel" t)
-(eval-after-load "erc" '(erc-nick-notify-mode t))
 
 ;; Org-mode
 (setq org-completion-use-ido t
