@@ -60,6 +60,7 @@
 
 ;; My favorite file selection mode is IDO !
 (ido-mode t)
+(ido-everywhere t)
 (setq ido-use-filename-at-point 'guess)
 
 ;; Server mode
