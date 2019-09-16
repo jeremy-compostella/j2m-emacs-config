@@ -110,6 +110,8 @@ to unset these local mode definitions."
   (release-my-global-keys org-mode-map)
   (variable-pitch-mode)
   (visual-line-mode)
+  (define-key org-mode-map (kbd "M-n") 'forward-paragraph)
+  (define-key org-mode-map (kbd "M-p") 'backward-paragraph)
   (setq-local sort-fold-case t)
   (flyspell-mode))
 (add-hook 'org-mode-hook 'my-org-mode-hook)
