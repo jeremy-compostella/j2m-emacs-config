@@ -108,8 +108,8 @@ to unset these local mode definitions."
 
 (defun my-org-mode-hook ()
   (release-my-global-keys org-mode-map)
-  (set-fill-column 80)
-  (turn-on-auto-fill)
+  (variable-pitch-mode)
+  (visual-line-mode)
   (flyspell-mode))
 (add-hook 'org-mode-hook 'my-org-mode-hook)
 (defun my-org-agenda-mode-hook ()
