@@ -121,11 +121,25 @@ to unset these local mode definitions."
 (eval-after-load 'org-agenda
   '(add-hook 'org-agenda-mode-hook 'my-org-agenda-mode-hook))
 
+(defun my-org-agenda ()
+  (interactive)
+  (let ((org-agenda-include-inactive-timestamps t))
+    (org-agenda-list)
+    (org-agenda-check-type t 'agenda)
+    (org-agenda-fortnight-view)
+    (org-agenda-manipulate-query-add)
+    (org-agenda-log-mode '(4))
+    (goto-char (point-min))
+    (search-forward "now - - - - - - - - - - " nil t)
+    (recenter)
+    (goto-char (line-beginning-position))
+    (define-key org-agenda-mode-map (kbd "g") 'my-org-agenda)))
+
 (global-set-key (kbd "C-c o")
 		(define-prefix-command 'my-org-prefix))
 (define-key 'my-org-prefix "f" 'org-switchb)
 (define-key 'my-org-prefix "c" 'org-capture)
-(define-key 'my-org-prefix "a" 'org-agenda-list)
+(define-key 'my-org-prefix "a" 'my-org-agenda)
 (define-key 'my-org-prefix "t" 'org-todo-list)
 (define-key 'my-org-prefix "l" 'org-store-link)
 
