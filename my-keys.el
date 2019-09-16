@@ -114,10 +114,12 @@ to unset these local mode definitions."
   (define-key org-mode-map (kbd "M-p") 'backward-paragraph)
   (setq-local sort-fold-case t)
   (flyspell-mode))
-(add-hook 'org-mode-hook 'my-org-mode-hook)
+(eval-after-load 'org
+  '(add-hook 'org-mode-hook 'my-org-mode-hook))
 (defun my-org-agenda-mode-hook ()
-  (define-key org-agenda-mode-map (kbd "q") 'quit-window))
-(add-hook 'org-agenda-mode-hook 'my-org-agenda-mode-hook)
+  (define-key org-agenda-mode-map (kbd "q") 'my-quit))
+(eval-after-load 'org-agenda
+  '(add-hook 'org-agenda-mode-hook 'my-org-agenda-mode-hook))
 
 (global-set-key (kbd "C-c o")
 		(define-prefix-command 'my-org-prefix))
