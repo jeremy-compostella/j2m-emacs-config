@@ -110,6 +110,7 @@ to unset these local mode definitions."
   (release-my-global-keys org-mode-map)
   (variable-pitch-mode)
   (visual-line-mode)
+  (setq-local sort-fold-case t)
   (flyspell-mode))
 (add-hook 'org-mode-hook 'my-org-mode-hook)
 (defun my-org-agenda-mode-hook ()
