@@ -26,6 +26,8 @@
 ;;   Boston, MA 02110-1301
 ;;   USA
 
+(require 'color)
+
 (deftheme j2m
   "Face colors using the Tango palette (dark background).
 Basic, Font Lock, Isearch, Gnus, Message, Ediff, Flyspell,
@@ -34,50 +36,54 @@ Semantic, and Ansi-Color faces are included.")
 (let ((class '((class color) (min-colors 89)))
       ;; Tango palette colors.
       (butter-1 "#fce94f") (butter-2 "#edd400") (butter-3 "#c4a000")
-      (orange-1 "#fcaf3e") (orange-2 "#f57900") (orange-3 "#ce5c00")
+      (orange-1 "#fcaf3e") (orange-2 "#f57900") (orange-3 "#0071c5")
       (choc-1 "#e9b96e") (choc-2 "#c17d11") (choc-3 "#8f5902")
       (cham-1 "#8ae234") (cham-2 "#73d216") (cham-3 "#4e9a06")
       (blue-1 "#729fcf") (blue-2 "#3465a4") (blue-3 "#204a87")
       (plum-1 "#e090d7") (plum-2 "#75507b") (plum-3 "#5c3566")
       (red-1 "#ef2929")  (red-2 "#cc0000")  (red-3 "#a40000")
       (alum-1 "#eeeeec") (alum-2 "#d3d7cf") (alum-3 "#babdb6")
-      (alum-4 "#888a85") (alum-5 "#555753") (alum-6 "#2e3436")
+      (alum-4 "#888a85") (alum-5 "#555753") (alum-6 "#262B2C")
       ;; Not in Tango palette; used for better contrast.
       (cham-0 "#b4fa70") (blue-0 "#8cc4ff") (plum-0 "#e9b2e3")
-      (red-0 "#ff4b4b")  (alum-5.5 "#41423f") (alum-7 "#212526"))
+      (red-0 "#ff4b4b")  (alum-5.5 "#41423f") (alum-7 "#212526")
+      (intel "#0071c5") (intel-grey "#384854"))
 
   (custom-theme-set-faces
    'j2m
    ;; Ensure sufficient contrast on low-color terminals.
+   '(variable-pitch ((t (:family "Intel Clear" :height 120))))
+   '(fixed-pitch ((t (:font "-PfEd-DejaVu Sans Mono-normal-normal-normal-*-*-*-*-*-m-0-iso10646-1"
+			    :height 100))))
    `(default ((((class color) (min-colors 4096))
-	       (:foreground ,alum-1 :background ,alum-6))
-	      (((class color) (min-colors 256))
-	       (:foreground ,alum-1 :background "#222"))
-	      (,class
-	       (:foreground ,alum-1 :background "black"))))
+   	       (:foreground ,alum-1 :background ,alum-6))
+   	      (((class color) (min-colors 256))
+   	       (:foreground ,alum-1 :background "#222"))
+   	      (,class
+   	       (:foreground ,alum-1 :background "black"))))
+   '(default ((t (:font "-PfEd-DejaVu Sans Mono-normal-normal-normal-*-*-*-*-*-m-0-iso10646-1"))))
    `(cursor ((,class (:background ,red-1))))
    ;; Highlighting faces
    `(fringe ((,class (:background ,alum-7))))
-   `(highlight ((,class (:foreground nil :background "grey25"))))
+   `(highlight ((,class (:foreground nil :background ,intel-grey))))
    `(region ((,class (:background ,alum-5))))
    `(secondary-selection ((,class (:background ,blue-3))))
-   `(isearch ((,class (:foreground ,alum-1 :background ,orange-3))))
-   `(lazy-highlight ((,class (:background ,choc-3))))
+   `(isearch ((,class (:foreground ,alum-1 :background ,intel))))
+   `(lazy-highlight ((,class (:background ,intel-grey))))
    `(trailing-whitespace ((,class (:background ,red-3))))
    ;; Mode line faces
    `(mode-line ((,class
-		 (:box (:line-width -1 :style released-button)
-		  :background ,alum-2 :foreground ,alum-6))))
+		 (:background ,intel :foreground ,alum-1))))
    `(mode-line-inactive ((,class
-			  (:box (:line-width -1 :style released-button)
-			   :background ,alum-5 :foreground ,alum-1))))
+			   :background ,intel-grey :foreground ,alum-1)))
    `(compilation-mode-line-fail ((,class (:foreground ,red-3))))
-   `(compilation-mode-line-run  ((,class (:foreground ,orange-3))))
+   `(compilation-mode-line-run  ((,class (:foreground ,intel))))
    `(compilation-mode-line-exit ((,class (:foreground ,cham-3))))
+   `(compilation-info ((,class (:foreground ,intel))))
    ;; Escape and prompt faces
-   `(minibuffer-prompt ((,class (:foreground ,cham-0))))
+   `(minibuffer-prompt ((,class (:foreground ,blue-0))))
    `(escape-glyph ((,class (:foreground ,butter-3))))
-   `(error ((,class (:foreground ,red-0))))
+   `(error ((,class (:foreground "red"))))
    `(warning ((,class (:foreground ,orange-1))))
    `(success ((,class (:foreground ,cham-1))))
    ;; Font lock faces
@@ -90,7 +96,7 @@ Semantic, and Ansi-Color faces are included.")
    `(font-lock-type-face ((,class (:foreground ,blue-0))))
    `(font-lock-variable-name-face ((,class (:foreground ,orange-1))))
    ;; Button and link faces
-   `(link ((,class (:underline t :foreground ,blue-1))))
+   `(link ((,class (:underline t :foreground ,blue-0))))
    `(link-visited ((,class (:underline t :foreground ,blue-2))))
    ;; Gnus faces
    `(gnus-group-news-1 ((,class (:foreground ,plum-1))))
@@ -116,11 +122,11 @@ Semantic, and Ansi-Color faces are included.")
    `(gnus-header-subject ((,class (:foreground ,cham-1))))
    `(gnus-header-name ((,class (:foreground ,blue-1))))
    `(gnus-header-newsgroups ((,class (:foreground ,choc-2))))
-   `(gnus-summary-high-ancient ((,class (:foreground ,red-0))))
-   `(gnus-summary-high-read ((,class (:foreground ,red-0))))
-   `(gnus-summary-high-ticked ((,class (:foreground "gold"))))
+   `(gnus-summary-high-ancient ((,class (:foreground ,alum-1))))
+   `(gnus-summary-high-read ((,class (:foreground ,alum-1))))
+   `(gnus-summary-high-ticked ((,class (:foreground "#e090d7"))))
    `(gnus-summary-high-undownloaded ((,class (:foreground ,red-0))))
-   `(gnus-summary-high-unread ((,class (:foreground ,red-0 :weight bold))))
+   `(gnus-summary-high-unread ((,class (:foreground ,alum-1 :weight bold))))
    `(gnus-summary-low-ancient ((,class (:foreground ,choc-1))))
    `(gnus-summary-low-read ((,class (:foreground ,choc-1))))
    `(gnus-summary-low-ticked ((,class (:foreground "gold"))))
@@ -143,16 +149,16 @@ Semantic, and Ansi-Color faces are included.")
    `(smerge-refined-change ((,class (:background ,blue-3))))
    ;; Ediff faces
    `(ediff-current-diff-A ((,class (:background ,alum-5))))
-   `(ediff-fine-diff-A ((,class (:background ,blue-3))))
-   `(ediff-even-diff-A ((,class (:background ,alum-5.5))))
+   `(ediff-fine-diff-A ((,class (:background ,orange-2))))
+   `(ediff-even-diff-A ((,class (:background ,choc-2))))
    `(ediff-odd-diff-A ((,class (:background ,alum-5.5))))
    `(ediff-current-diff-B ((,class (:background ,alum-5))))
-   `(ediff-fine-diff-B ((,class (:background ,choc-3))))
-   `(ediff-even-diff-B ((,class (:background ,alum-5.5))))
+   `(ediff-fine-diff-B ((,class (:background ,orange-2))))
+   `(ediff-even-diff-B ((,class (:background ,choc-2))))
    `(ediff-odd-diff-B ((,class (:background ,alum-5.5))))
    ;; Flyspell faces
-   `(flyspell-duplicate ((,class (:underline ,orange-1))))
-   `(flyspell-incorrect ((,class (:underline ,red-1))))
+   `(flyspell-duplicate ((,class (:underline (:color ,orange-1 :style wave)))))
+   `(flyspell-incorrect ((,class (:underline (:color ,red-3 :style wave)))))
    ;; Semantic faces
    `(semantic-decoration-on-includes ((,class (:underline ,alum-4))))
    `(semantic-decoration-on-private-members-face
@@ -166,13 +172,38 @@ Semantic, and Ansi-Color faces are included.")
    `(semantic-tag-boundary-face ((,class (:overline ,blue-1))))
    `(semantic-unmatched-syntax-face ((,class (:underline ,red-1))))
    ;; Status
-   `(status-time-face ((,class (:height 1.3 :foreground ,orange-1 :weight bold))))
-   `(status-date-face ((,class (:foreground ,orange-1 :weight bold))))
-   `(status-project-manager-face ((,class (:height 1.3 :foreground ,orange-1 :weight bold))))
+   `(status-time-face ((,class (:height 1.0 :foreground ,blue-1 :weight bold))))
+   `(status-date-face ((,class (:foreground ,blue-0 :weight bold))))
+   `(status-project-manager-face ((,class (:height 1.0 :foreground ,blue-0 :weight bold))))
    `(status-battery-charging-face ((,class (:foreground ,cham-0))))
-   `(status-battery-charged-face ((, class (:foreground ,cham-0))))
-   `(status-battery-discharging-fmt ((, class (:foreground ,red-0))))
-   `(status-purple-face ((, class (:foreground ,alum-1))))
+   `(status-battery-charged-face ((, class (:foreground ,alum-1))))
+   `(status-battery-discharging-face ((, class (:foreground ,red-1))))
+   `(status-purple-face ((, class (:foreground "white" :background ,intel))))
+   ;; Org Mode
+   `(org-date ((, class (:foreground ,alum-3))))
+   `(org-tag ((, class (:slant italic :foreground ,alum-3 :height 1.0))))
+   `(org-level-1 ((, class (:foreground "yellow"  :height 1.2))))
+   `(org-ellipsis ((, class (:foreground "LightGoldenrod"))))
+   `(org-checkbox-statistics-todo ((, class ())))
+   `(org-checkbox-statistics-done ((, class ())))
+   `(org-formula ((t (:inherit fixed-pitch))))
+   `(org-link ((t (:inherit fixed-pitch :foreground "#8cc4ff" :underline t))))
+   `(org-table ((t (:inherit fixed-pitch :foreground ,blue-0))))
+   `(org-meta-line ((t (:inherit fixed-pitch :foreground ,blue-0))))
+   '(org-code ((t (:inherit fixed-pitch :foreground "grey70"))))
+   `(org-quote ((t (:inherit variable-pitch :slant italic :foreground ,blue-0
+			     :background ,(color-darken-name (face-attribute 'default :background) 3)))))
+   `(org-block ((t (:inherit fixed-pitch
+			     :background ,(color-darken-name (face-attribute 'default :background) 3)))))
+   '(org-document-info ((t (:inherit fixed-pitch :foreground "dark orange"))))
+   '(org-document-info-keyword ((t (:inherit (shadow fixed-pitch)))))
+   '(org-meta-line ((t (:inherit (font-lock-comment-face fixed-pitch)))))
+   '(org-property-value ((t (:inherit fixed-pitch))) t)
+   '(org-special-keyword ((t (:inherit (font-lock-comment-face fixed-pitch)))))
+   '(org-verbatim ((t (:inherit (shadow fixed-pitch)))))
+   '(org-indent ((t (:inherit (org-hide fixed-pitch)))))   ;; Powerline
+   `(powerline-active0 ((,class (:inherit mode-line :box (:line-width 3 :color ,intel)))))
+   `(powerline-inactive0 ((,class (:background "grey30" :foreground "white" :inherit mode-line :box (:line-width 3 :color "grey30")))))
    ;; ERC
    `(erc-input-face ((,class (:foreground ,blue-1))))
    `(erc-my-nick-face ((,class (:foreground ,blue-1)))))
