@@ -25,17 +25,26 @@
 (global-set-key (kbd "C-M-k") 'windmove-up)
 (global-set-key (kbd "C-M-l") 'windmove-left)
 (global-set-key (kbd "C-M-;") 'windmove-right)
+
+(require 'buffer-move)
+(global-set-key (kbd "C-M-S-j") 'buf-move-down)
+(global-set-key (kbd "C-M-S-k") 'buf-move-up)
+(global-set-key (kbd "C-M-S-l") 'buf-move-left)
+(global-set-key (kbd "C-M-:") 'buf-move-right)
 (setq windmove-wrap-around t)
+
+(defun my-quit ()
+  (interactive)
+  (quit-restore-window))
 
 ;; Personal global keys configuration
 (global-set-key (kbd "C-x p") 'previous-error)
 (global-set-key (kbd "C-x n") 'next-error)
 (global-set-key (kbd "C-j") 'newline)
 (global-set-key (kbd "C-z") nil)
-(global-set-key (kbd "C-c q") 'quit-window)
+(global-set-key (kbd "C-c q") 'my-quit)
 (global-set-key (kbd "C-'") 'delete-backward-char)
 (global-set-key (kbd "C-M-'") 'backward-kill-word)
-(global-set-key (kbd "C-x m") 'org-msg-new)
 (global-set-key (kbd "C-c SPC") (lambda ()
 				  (interactive)
 				  (with-current-buffer "*compilation*"
@@ -45,6 +54,7 @@
 (defun my-code-mode-hook (map)
   (define-key map (kbd "M-n") 'forward-paragraph)
   (define-key map (kbd "M-p") 'backward-paragraph)
+  (define-key map (kbd "C-c q") 'my-quit)
   (hs-minor-mode)
   (hs-hide-initial-comment-block)
   (setq show-trailing-whitespace t)
@@ -52,7 +62,8 @@
   (dtrt-indent-mode t))
 
 (defun my-c-mode-hook ()
-  (my-code-mode-hook c-mode-map))
+  (my-code-mode-hook c-mode-map)
+  (set-fill-column 96))
 (eval-after-load 'cc-mode
   '(add-hook 'c-mode-hook 'my-c-mode-hook))
 
@@ -62,7 +73,8 @@
   '(add-hook 'c++-mode-hook 'my-c++-mode-hook))
 
 (defun my-emacs-lisp-mode-hook ()
-  (my-code-mode-hook emacs-lisp-mode-map))
+  (my-code-mode-hook emacs-lisp-mode-map)
+  (set-fill-column 80))
 (eval-after-load 'lisp-mode
   '(add-hook 'emacs-lisp-mode-hook 'my-emacs-lisp-mode-hook))
 
@@ -102,7 +114,8 @@ to unset these local mode definitions."
   (define-key map (kbd "C-c SPC") nil))
 
 (defun my-hexl-mode-hook ()
-  (release-my-global-keys hexl-mode-map))
+  (release-my-global-keys hexl-mode-map)
+  (define-key hexl-mode-map (kbd "C-c q") 'my-quit))
 (eval-after-load 'hexl
   '(add-hook 'hexl-mode-hook 'my-hexl-mode-hook))
 
@@ -113,13 +126,22 @@ to unset these local mode definitions."
   (define-key org-mode-map (kbd "M-n") 'forward-paragraph)
   (define-key org-mode-map (kbd "M-p") 'backward-paragraph)
   (setq-local sort-fold-case t)
-  (flyspell-mode))
+  (flyspell-mode)
+  (turn-off-auto-fill))
 (eval-after-load 'org
   '(add-hook 'org-mode-hook 'my-org-mode-hook))
 (defun my-org-agenda-mode-hook ()
   (define-key org-agenda-mode-map (kbd "q") 'my-quit))
 (eval-after-load 'org-agenda
   '(add-hook 'org-agenda-mode-hook 'my-org-agenda-mode-hook))
+
+(defun my-gnus-article-mode-hook ()
+  (make-local-variable 'page-delimiter)
+  (setq page-delimiter "")
+  (define-key gnus-article-mode-map (kbd "M-n") 'forward-page)
+  (define-key gnus-article-mode-map (kbd "M-p") 'backward-page)
+  (define-key gnus-article-mode-map (kbd "C-c C-e") 'my-browse-mail))
+(add-hook 'gnus-article-mode-hook 'my-gnus-article-mode-hook)
 
 (defun my-org-agenda ()
   (interactive)
@@ -144,7 +166,7 @@ to unset these local mode definitions."
 (define-key 'my-org-prefix "l" 'org-store-link)
 
 (defun my-text-mode-hook ()
-  (set-fill-column 70)
+  (set-fill-column 72)
   (turn-on-auto-fill)
   (flyspell-mode))
 (eval-after-load 'text-mode
@@ -189,6 +211,8 @@ to unset these local mode definitions."
       (interactive)
       (my-gnus-kill-open-articles)
       (quit-window)))
+  (define-key gnus-summary-mode-map (kbd "<S-return>")
+    'gnus-summary-scroll-down)
   (define-key gnus-summary-mode-map (kbd "M-g")
     (lambda ()
       (interactive)
@@ -212,14 +236,43 @@ to unset these local mode definitions."
 (eval-after-load 'python
   '(add-hook 'inferior-python-mode-hook 'my-inferior-python-mode-hook))
 
+(defun my-conf-mode-hook ()
+  (release-my-global-keys conf-mode-map))
+(eval-after-load 'conf
+  '(add-hook 'conf-mode-hook 'my-conf-mode-hook))
+
 (defun my-magit-mode-hook ()
   (define-key magit-mode-map (kbd "M-n") 'diff-hunk-next)
   (define-key magit-mode-map (kbd "M-p") 'diff-hunk-prev))
 (eval-after-load 'magit-mode
   '(add-hook 'magit-mode-hook 'my-magit-mode-hook))
 
+(defun my-compilation-send-string (str)
+  (interactive "sString to send: ")
+  (comint-send-string (get-buffer-process (current-buffer)) str))
+(defun my-compilation-mode-hook ()
+  (define-key compilation-mode-map (kbd "p") 'compilation-previous-error)
+  (define-key compilation-mode-map (kbd "n") 'compilation-next-error)
+  (define-key compilation-mode-map (kbd "e") 'my-compilation-send-string)
+  (define-key compilation-mode-map (kbd "SPC") 'compilation-display-error))
+(eval-after-load 'compile
+  '(add-hook 'compilation-mode-hook 'my-compilation-mode-hook))
+
+(defun my-magit-buffer-list ()
+  (let ((bufs (seq-filter (lambda (x)
+			    (string-prefix-p "magit: " x))
+			  (mapcar 'buffer-name (buffer-list)))))
+    (if (string= (car bufs) (buffer-name (current-buffer)))
+	(cdr bufs)
+      bufs)))
+
+(defun my-magit-switch-buffer (buffer-name)
+  (interactive (list (ido-completing-read "Buffer: " (my-magit-buffer-list) t)))
+  (switch-to-buffer buffer-name))
+
 (global-set-key (kbd "C-c m")
 		(define-prefix-command 'my-magit-prefix))
+(define-key 'my-magit-prefix "m" 'my-magit-switch-buffer)
 (define-key 'my-magit-prefix "s" 'magit-status)
 
 (define-key 'my-magit-prefix "l" 'magit-log-head)

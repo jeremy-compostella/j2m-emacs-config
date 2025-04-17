@@ -26,19 +26,25 @@
 (require 'status)
 (require 'j2m-tools)
 (require 'org-msg)
-(setq org-msg-options "html-postamble:nil H:5 num:nil ^:{} toc:nil")
-(setq org-msg-startup "hidestars indent inlineimages")
-(setq org-msg-signature "
+(setq org-msg-options "html-postamble:nil H:5 num:nil ^:{} toc:nil author:nil email:nil \\n:t")
+(setq org-msg-startup "hidestars indent inlineimages"
+      org-msg-greeting-fmt "\nHi *%s*,\n\n"
+      org-msg-greeting-name-limit 3
+      org-msg-default-alternatives '((new		. (text html))
+				     (reply-to-html	. (text html))
+				     (reply-to-text	. (text)))
+      org-msg-convert-citation t
+      org-msg-signature "
 
 Regards,
 
 #+begin_signature
--- *Jeremy* \\\\
+-- 
+*Jeremy*
 /One Emacs to rule them all/
 #+end_signature")
 (require 'pdfgrep)
 (require 'rscope)
-(require 'google-maps)
 (require 'offlineimap)
 (require 'git-commit-mode)
 (require 'magit)
@@ -57,5 +63,65 @@ Regards,
 (require 'org-clock)
 (require 'org-table)
 (add-to-list 'load-path (concat j2m-config-directory "/notmuch/emacs"))
+(setq org-hide-emphasis-markers t)
+(add-hook 'org-mode-hook
+	  (lambda ()
+	    (font-lock-add-keywords
+	     nil
+	     '(("^ *\\([-]\\) "
+		(0 (prog1 ()
+		     (compose-region (match-beginning 1) (match-end 1) "•"))))
+	       ("\\(\\\\deg\\) "
+		(0 (prog1 ()
+		     (compose-region (match-beginning 1) (match-end 1) "°"))))
+	       ("\\(\\\\rArr\\) "
+		(0 (prog1 ()
+		     (compose-region (match-beginning 1) (match-end 1) "⇒"))))
+	       ("\\(\\\\rarr\\) "
+		(0 (prog1 ()
+		     (compose-region (match-beginning 1) (match-end 1) "→"))))
+	       ("\\(\\\\hArr\\) "
+		(0 (prog1 ()
+		     (compose-region (match-beginning 1) (match-end 1) "⇔"))))
+	       ("\\(\\\\micro{}\\) "
+		(0 (prog1 ()
+		     (compose-region (match-beginning 1) (match-end 1) "µ"))))
+	       ("\\(\\\\harr\\) "
+		(0 (prog1 ()
+		     (compose-region (match-beginning 1) (match-end 1) "↔"))))
+	       ("\\(\\\\larr\\) "
+		(0 (prog1 ()
+		     (compose-region (match-beginning 1) (match-end 1) "←"))))
+	       ("\\(\\\\isin\\) "
+		(0 (prog1 ()
+		     (compose-region (match-beginning 1) (match-end 1) "∈"))))
+	       ("\\(\\\\approx\\) "
+		(0 (prog1 ()
+		     (compose-region (match-beginning 1) (match-end 1) "≈"))))
+	       ("\\(\\\\sad\\) "
+		(0 (prog1 ()
+		     (compose-region (match-beginning 1) (match-end 1) "☹"))))
+	       ("\\(\\\\ge\\) "
+		(0 (prog1 ()
+		     (compose-region (match-beginning 1) (match-end 1) "≥"))))
+	       ("\\(\\\\le\\) "
+		(0 (prog1 ()
+		     (compose-region (match-beginning 1) (match-end 1) "≤3"))))
+	       ("\\(\\\\trade\\) "
+		(0 (prog1 ()
+		     (compose-region (match-beginning 1) (match-end 1) "™"))))
+	       ("\\(\\\\reg\\) "
+		(0 (prog1 ()
+		     (compose-region (match-beginning 1) (match-end 1) "®"))))
+	       ("\\(\\\\ldquo\\) "
+		(0 (prog1 ()
+		     (compose-region (match-beginning 1) (match-end 1) "“"))))
+	       ("\\(\\\\rdquo\\) "
+		(0 (prog1 ()
+		     (compose-region (match-beginning 1) (match-end 1) "”"))))
+	       ("\\(\\\\smiley\\) "
+		(0 (prog1 ()
+		     (compose-region (match-beginning 1) (match-end 1) "☺"))))))))
+
 
 (provide 'my-submodule)

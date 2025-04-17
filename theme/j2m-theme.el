@@ -52,16 +52,16 @@ Semantic, and Ansi-Color faces are included.")
   (custom-theme-set-faces
    'j2m
    ;; Ensure sufficient contrast on low-color terminals.
-   '(variable-pitch ((t (:family "Intel Clear" :height 120))))
-   '(fixed-pitch ((t (:font "-PfEd-DejaVu Sans Mono-normal-normal-normal-*-*-*-*-*-m-0-iso10646-1"
-			    :height 100))))
+   '(variable-pitch ((t (:family "Intel Clear" :height 100))))
+ '(fixed-pitch ((t (:font "-PfEd-DejaVu Sans Mono-normal-normal-normal-*-12-*-*-*-m-0-iso10646-1"
+			    :height 90))))
    `(default ((((class color) (min-colors 4096))
    	       (:foreground ,alum-1 :background ,alum-6))
    	      (((class color) (min-colors 256))
    	       (:foreground ,alum-1 :background "#222"))
    	      (,class
    	       (:foreground ,alum-1 :background "black"))))
-   '(default ((t (:font "-PfEd-DejaVu Sans Mono-normal-normal-normal-*-*-*-*-*-m-0-iso10646-1"))))
+   '(default ((t (:font "-PfEd-DejaVu Sans Mono-normal-normal-normal-*-12-*-*-*-m-0-iso10646-1"))))
    `(cursor ((,class (:background ,red-1))))
    ;; Highlighting faces
    `(fringe ((,class (:background ,alum-7))))
@@ -137,6 +137,11 @@ Semantic, and Ansi-Color faces are included.")
    `(gnus-summary-normal-ticked ((,class (:foreground "gold"))))
    `(gnus-summary-normal-undownloaded ((,class (:foreground ,alum-1))))
    `(gnus-summary-normal-unread ((,class (:foreground ,alum-1 :weight bold))))
+   `(gnus-summary-selected ((,class (:foreground ,alum-1 :background ,intel))))
+   `(gnus-summary-normal-unread ((,class (:foreground "#dddddd"))))
+   ;; SHR
+   `(shr-text ((,class (:height 90))))
+
    ;; Message faces
    `(message-header-name ((,class (:foreground ,blue-1))))
    `(message-header-cc ((,class (:foreground ,butter-3))))
@@ -156,6 +161,9 @@ Semantic, and Ansi-Color faces are included.")
    `(ediff-fine-diff-B ((,class (:background ,orange-2))))
    `(ediff-even-diff-B ((,class (:background ,choc-2))))
    `(ediff-odd-diff-B ((,class (:background ,alum-5.5))))
+   ;; Diff face
+   `(diff-refine-added ((,class (:background "green"))))
+   `(diff-refine-removed ((,class (:background ,red-3))))
    ;; Flyspell faces
    `(flyspell-duplicate ((,class (:underline (:color ,orange-1 :style wave)))))
    `(flyspell-incorrect ((,class (:underline (:color ,red-3 :style wave)))))
@@ -182,7 +190,7 @@ Semantic, and Ansi-Color faces are included.")
    ;; Org Mode
    `(org-date ((, class (:foreground ,alum-3))))
    `(org-tag ((, class (:slant italic :foreground ,alum-3 :height 1.0))))
-   `(org-level-1 ((, class (:foreground "yellow"  :height 1.2))))
+   `(org-level-1 ((, class (:foreground "orange"  :height 1.2))))
    `(org-ellipsis ((, class (:foreground "LightGoldenrod"))))
    `(org-checkbox-statistics-todo ((, class ())))
    `(org-checkbox-statistics-done ((, class ())))

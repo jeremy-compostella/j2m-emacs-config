@@ -36,6 +36,7 @@
 (global-hl-line-mode t)
 (column-number-mode t)
 (show-paren-mode t)
+;; (setq default-frame-alist '((undecorated . t)))
 
 (setq custom-theme-directory (concat j2m-config-directory "/theme"))
 (load-theme 'j2m t)
@@ -138,20 +139,20 @@
 (run-at-time t 60 'update-appt-from-org-agenda)
 
 (defface my-org-todo-base-face
-  '((t (:weight bold :box (:line-width 2 :style released-button))))
+  '((t :weight bold :box (:line-width 2 :style released-button) :inherit default))
   "Base face for org-todo")
 (face-spec-set 'org-todo
-  '((t :background "red1" :foreground "white" :inherit 'my-org-todo-base-face)))
+  '((t :background "red3" :foreground "white" :inherit my-org-todo-base-face)))
 (face-spec-set 'org-done
-  '((t :background "forest green" :foreground "white" :inherit 'my-org-todo-base-face)))
+  '((t :background "green4" :foreground "white" :inherit my-org-todo-base-face)))
 (defface my-org-todo-on-hold-face
-  '((t :background "RoyalBlue" :foreground "white" :inherit 'my-org-todo-base-face))
+  '((t :background "#0071c5" :foreground "white" :inherit my-org-todo-base-face))
   "Face used for todo keywords that indicate \"on-hold\" items.")
 (defface my-org-todo-in-progress-face
-  '((t :background "orange" :foreground "black" :inherit 'my-org-todo-base-face))
+  '((t :background "yellow2" :foreground "black" :inherit my-org-todo-base-face))
   "Face used for todo keywords that indicate \"in-progress\" items.")
 (defface my-org-todo-almost-done-face
-  '((t :background "yellow" :foreground "black" :inherit 'my-org-todo-base-face))
+  '((t :background "yellow" :foreground "black" :inherit my-org-todo-base-face))
   "Face used for todo keywords that indicate \"almost-done\" items.")
 
 (setq org-todo-keyword-faces
@@ -171,6 +172,10 @@
       smtpmail-smtp-service 587
       ;; GNUS
       gnus-select-method '(nnimap "local"
+      mail-user-agent 'gnus-user-agent
+      message-forward-as-mime t
+      message-make-forward-subject-function 'message-forward-subject-fwd
+      gnus-select-method '(nnimap "localhost"
 				  (nnimap-address "localhost")
 				  (nnimap-server-port 993)
 				  (nnimap-stream ssl)
@@ -178,21 +183,19 @@
       gnus-use-scoring t
       gnus-use-adaptive-scoring t
       gnus-use-full-window nil
-      gnus-summary-line-format "%U%R%(%-14,14&user-date; %*%-15,15f%B %s%)\n"
+      gnus-summary-line-format "%U%R%(%-14,14&user-date; %*%-15,15f%B %us%)\n"
       gnus-sum-thread-tree-indent " "
-      gnus-sum-thread-tree-root "● "
+      gnus-sum-thread-tree-root " ● "
       gnus-sum-thread-tree-false-root " ○ "
       gnus-sum-thread-tree-single-indent " ● "
-      gnus-sum-thread-tree-leaf-with-other "├► "
-      gnus-sum-thread-tree-single-leaf "╰► "
-      gnus-sum-thread-tree-vertical "│"
-      gnus-thread-sort-functions '(gnus-thread-sort-by-most-recent-date))
+      gnus-sum-thread-tree-leaf-with-other " ├► "
+      gnus-sum-thread-tree-single-leaf " ╰► "
+      gnus-sum-thread-tree-vertical " │"
+      gnus-thread-sort-functions '(gnus-thread-sort-by-date))
 
 (require 'ispell)
 (require 'flyspell)
 (defun my-message-edit-hook ()
-  (set-fill-column 70)
-  (turn-on-auto-fill)
   (flyspell-mode))
 (add-hook 'message-mode-hook 'my-message-edit-hook)
 
@@ -210,6 +213,8 @@
 
 ;; Package locations
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
+;; Shell
+(setq explicit-shell-file-name "/bin/bash")
 
 ;; My key shortcuts
 (require 'my-keys)
