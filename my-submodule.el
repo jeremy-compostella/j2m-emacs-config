@@ -23,7 +23,9 @@
 ;; up-to-date.  Hence these are submodules and overide the default
 ;; path.
 
+(add-to-list 'load-path (concat j2m-config-directory "/status"))
 (require 'status)
+(add-to-list 'load-path (concat j2m-config-directory "/j2m-tools"))
 (require 'j2m-tools)
 (require 'org-msg)
 (setq org-msg-options "html-postamble:nil H:5 num:nil ^:{} toc:nil author:nil email:nil \\n:t")
